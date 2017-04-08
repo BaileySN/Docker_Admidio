@@ -113,6 +113,10 @@ docker build -t admidio_test .
 ```
 Das Container update selber ist wieder das gleiche, wie oben Beschrieben ohne dem Docker Hub Teil.
 
+# Wiki zu Admidio
+
+[Admidio Wiki](https://www.admidio.org/dokuwiki/doku.php?id=de:2.0:index)
+
 # Zum Abschluss
 
 Falls es Anregungen gibt, bitte über Github oder Dockerhub eine Anfrage erstellen. (Hört sich etwas Komisch an, ist aber gut gemeint).
