@@ -122,4 +122,13 @@ Das Container update selber ist wieder das gleiche, wie oben Beschrieben ohne de
 Falls es Anregungen gibt, bitte über Github oder Dockerhub eine Anfrage erstellen. (Hört sich etwas Komisch an, ist aber gut gemeint).
 
 
+# MySQL Benutzer und Datenbank in der MySQL Shell erstellen
+
+```mysql
+CREATE USER 'admidio'@'%' IDENTIFIED BY 'geheim';
+CREATE DATABASE IF NOT EXISTS admidio;
+GRANT ALL ON admidio.* TO 'admidio'@'%';
+FLUSH PRIVILEGES;
+quit;
+```
 
