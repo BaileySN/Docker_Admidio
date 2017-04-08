@@ -30,7 +30,6 @@ Darum habe ich mir gedacht, warum nicht das in einem [Docker Container](https://
 
 Den Fertigen Container kann man einfach per [docker pull guenterbailey/admidio:latest](https://hub.docker.com/r/guenterbailey/admidio/) downloaden.
 
-
 ## Container erstellen
 
 Um den Container selber Lokal zu erstellen, das Repositority downloaden oder Clonen.
@@ -44,5 +43,23 @@ oder mit dem Skript den Container erstellen.
 sh docker_build.sh
 ```
 
-### Info zum Inhalt
+Im Kompillierungsprozess werden die Dateien *admidio_apache.conf* und *admidio-3.2.8.zip* automatisch in den Kontainer kopiert und eingerichtet.
+
+### Container starten
+
+Nach dem Erstellungsprozess kann man den Container mit folgendem Befehl starten (Provisionieren).
+
+```bash
+docker run -it --restart always --name admidio_test -p 8080:80 -v /var/admidio:/var/www/admidio/adm_my_files admidio:3.2.8
+```
+Danach über den Browser die Seite *http://localhost:8080/* aufrufen und das Admidio Setup durchgehen.
+
+Falls man einen Docker basierte Datenbank hat, kann man die Datenbank mit dem Container verlinken und braucht nicht die IP-Addresse eingeben.
+
+```bash
+docker run -it --restart always --name admidio_test -p 8080:80 -v /var/admidio:/var/www/admidio/adm_my_files --link dockermysql:mysql admidio:3.2.8
+```
+Jetzt haben wir den Befehl *--link dockermysql:mysql* zum start hinzugegeben.
+
+Dabei kann jetzt im Admidio Setup bei der Datenbank statt die IP-Addresse der Containername *dockermysql* eingeben werden und als Datenbank *mysql*.
 
