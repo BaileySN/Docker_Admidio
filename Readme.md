@@ -76,9 +76,46 @@ Dadurch könnte man z.B.: den Container auch über Port *8081* erreichen indem m
 * *-v /var/admidio:/var/www/admidio/adm_my_files* => Uploads und config von Admidio Lokal in einen Ordner speichern.
 Der Vorteil dabei ist, das man einfacher ein Backup erstellen kann. Dabei wird zuerst der Lokale Ordnerpfad angeben, danach den 
 Pfad im Container.
-* *--link dockermysql:mysql* => Docker Datenbank Server [MySQL](https://hub.docker.com/r/mysql/mysql-server/) oder [PostgreSQL](https://hub.docker.com/_/postgres/) mit dem Container Admidio verbinden. *dockermysql* = Name vom Docker Container, *:mysql* = Name der Datenbank.
+* *--link dockermysql:mysql* => Docker Datenbank Server [MySQL](https://hub.docker.com/r/mysql/mysql-server/) oder [PostgreSQL](https://hub.docker.com/_/postgres/) mit dem Container Admidio verbinden. *dockermysql* = Name vom Docker Container, *mysql* = Name der Datenbank.
 * *admidio:3.2.8* => Image Name mit Versions Tag.
 
+## Admidio Container updaten
+
+Falls man es mit dem Docker Hub Repo verwendet, kann man folgende schritte durchführen.
+
+* Download aktuelles Repo vom Docker Hub
+```bash
+docker pull guenterbailey/admidio:latest
+```
+* Den aktuellen *Admidio_test* Container anhalten
+```bash
+docker stop admidio_test
+```
+* Container entfernen (Docker löscht dabei die Daten im *adm_my_files* nicht)
+```bash
+docker rm admidio_test
+```
+* Mit folgendem Befehl den neuen Container Provisionieren und Starten (dabei kann der alte Befehl verwendet werden).
+```bash
+docker run -it --restart always --name admidio_test -p 8080:80 -v /var/admidio:/var/www/admidio/adm_my_files --link dockermysql:mysql admidio:latest
+```
+* Über einen Browser auf die Admidio Seite gehen und falls nötig die Migration durchführen.
+* Fertig!
+
+### Admidio Container über Git updaten
+
+Wenn man sich das Git Repo Ansieht, fällt einem gleich die ZIP Datei *admidio-3.2.8.zip* auf.
+Würde es jetzt eine neue Version geben, z.b.: *admidio-3.2.9.zip* muss man es noch im Dockerfile bei der Variable *ADMINST* anpassen.
+
+Danach einmal den Container neu bauen.
+```bash
+docker build -t admidio_test .
+```
+Das Container update selber ist wieder das gleiche, wie oben Beschrieben ohne dem Docker Hub Teil.
+
+# Zum Abschluss
+
+Falls es Anregungen gibt, bitte über Github oder Dockerhub eine Anfrage erstellen. (Hört sich etwas Komisch an, ist aber gut gemeint).
 
 
 
