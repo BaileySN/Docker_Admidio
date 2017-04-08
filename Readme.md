@@ -63,3 +63,22 @@ Jetzt haben wir den Befehl *--link dockermysql:mysql* zum start hinzugegeben.
 
 Dabei kann jetzt im Admidio Setup bei der Datenbank statt die IP-Addresse der Containername *dockermysql* eingeben werden und als Datenbank *mysql*.
 
+### Erklärung zu dem Start Befehl
+
+Bei diesem Beispiel
+```bash
+docker run -it --restart always --name admidio_test -p 8080:80 -v /var/admidio:/var/www/admidio/adm_my_files --link dockermysql:mysql admidio:3.2.8
+```
+* *--restart always* => auch nach einem Server Neustart den Container starten
+* *--name* => gib dem Container einen Namen (sonst wird einer Automatisch generiert)
+* *-p 8080:80* => Einen Port angeben, über dem man danach zugreifen kann (**lokal am Server**:**apache2 Port im Container**).
+Dadurch könnte man z.B.: den Container auch über Port *8081* erreichen indem man es so angibt *-p 8081:80*.
+* *-v /var/admidio:/var/www/admidio/adm_my_files* => Uploads und config von Admidio Lokal in einen Ordner speichern.
+Der Vorteil dabei ist, das man einfacher ein Backup erstellen kann. Dabei wird zuerst der Lokale Ordnerpfad angeben, danach den 
+Pfad im Container.
+* *--link dockermysql:mysql* => Docker Datenbank Server [MySQL](https://hub.docker.com/r/mysql/mysql-server/) oder [PostgreSQL](https://hub.docker.com/_/postgres/) mit dem Container Admidio verbinden. *dockermysql* = Name vom Docker Container, *:mysql* = Name der Datenbank.
+* *admidio:3.2.8* => Image Name mit Versions Tag.
+
+
+
+
