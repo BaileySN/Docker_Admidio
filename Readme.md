@@ -104,10 +104,11 @@ docker run -it --restart always --name admidio_test -p 8080:80 -v /var/admidio:/
 
 ### Admidio Container über Git updaten
 
-Wenn man sich das Git Repo Ansieht, fällt einem gleich die ZIP Datei *admidio-3.2.8.zip* auf.
-Würde es jetzt eine neue Version geben, z.b.: *admidio-3.2.9.zip* muss man es noch im Dockerfile bei der Variable *ENV ADMINST="admidio-3.2.8"* anpassen (die Endung *.zip* muss wegelassen werden).
+Mit *Git pull* im aktuellen Ordner, das Git Repo updaten und den Container neu Bauen.
+```bash
+git pull
+```
 
-Danach einmal den Container neu bauen.
 ```bash
 docker build -t admidio_test .
 ```
