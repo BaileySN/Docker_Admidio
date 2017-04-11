@@ -68,7 +68,7 @@ Dabei wird der Container jetzt mit dem Branch *master* erstellt.
 
 Falls man einen Speziellen Branch braucht, muss man noch den Befehl um die Branch bezeichnung erweitern.
 ```bash
-sh docker_build.sh v3.2
+sh docker_build.sh v3.2.8
 ```
 
 ### Container mit Docker Befehl erstellen
@@ -82,7 +82,7 @@ docker build -t admidio_test .
 Für einen Speziellen Branch, gibt man noch *--build-arg branch=Branch-Bezeichnung* an.
 
 ```bash
-docker build -t admidio_test --build-arg branch=v3.2 .
+docker build -t admidio_test --build-arg branch=v3.2.8 .
 ```
 
 Im Kompillierungsprozess wird die Datei *admidio_apache.conf* automatisch in den Container kopiert und eingerichtet.
@@ -92,14 +92,14 @@ Im Kompillierungsprozess wird die Datei *admidio_apache.conf* automatisch in den
 Nach dem Erstellungsprozess kann man den Container mit folgendem Befehl starten (Provisionieren).
 
 ```bash
-docker run -it --restart always --name admidio_test -p 8080:80 -v /var/admidio:/var/www/admidio/adm_my_files admidio:3.2.8
+docker run -it --restart always --name admidio_test -p 8080:80 -v /var/admidio:/var/www/admidio/adm_my_files admidio:v3.2.8
 ```
 Danach über den Browser die Seite *http://localhost:8080/* aufrufen und das Admidio Setup durchgehen.
 
 Falls man einen Docker basierte Datenbank hat, kann man die Datenbank mit dem Container verlinken und braucht nicht die IP-Addresse eingeben.
 
 ```bash
-docker run -it --restart always --name admidio_test -p 8080:80 -v /var/admidio:/var/www/admidio/adm_my_files --link dockermysql:mysql admidio:3.2.8
+docker run -it --restart always --name admidio_test -p 8080:80 -v /var/admidio:/var/www/admidio/adm_my_files --link dockermysql:mysql admidio:v3.2.8
 ```
 Jetzt haben wir den Befehl *--link dockermysql:mysql* zum start hinzugegeben.
 
@@ -110,7 +110,7 @@ Dabei kann jetzt im Admidio Setup bei der Datenbank statt die IP-Addresse der Co
 Bei diesem Beispiel
 
 ```bash
-docker run -it --restart always --name admidio_test -p 8080:80 -v /var/admidio:/var/www/admidio/adm_my_files --link dockermysql:mysql admidio:3.2.8
+docker run -it --restart always --name admidio_test -p 8080:80 -v /var/admidio:/var/www/admidio/adm_my_files --link dockermysql:mysql admidio:v3.2.8
 ```
 * *--restart always* => auch nach einem Server Neustart den Container starten
 * *--name* => gib dem Container einen Namen (sonst wird einer Automatisch generiert)
@@ -119,17 +119,11 @@ Dadurch könnte man z.B.: den Container auch über Port *8081* erreichen indem m
 * *-v /var/admidio:/var/www/admidio/adm_my_files* => Uploads und config von Admidio Lokal in einen Ordner speichern.
 Der Vorteil dabei ist, das man einfacher ein Backup erstellen kann. Dabei wird zuerst der Lokale Ordnerpfad angeben, danach den 
 Pfad im Container. 
-<span style="color:red">Info:</span> es ist ein Mount Befehl, somit wird der Lokale Ordner am Host mit dem im Container drübergelegt.
+
+**Info:** es ist ein Mount Befehl, somit wird der Lokale Ordner am Host mit dem im Container drübergelegt.
 Dies bedeutet: wenn der Lokale Ordner Leer ist, ist es auch im Container so.
 Somit müsste man bei *adm_plugins*, *adm_themes* zuerst den Ordner am Lokalem Host anlegen und darin die Daten reinlegen.
-Besser ist es in diesem Beitrag erklärt [Docker Data Volumes](www.tricksofthetrades.net/2016/03/14/docker-data-volumes/)
-
-Folgende Pfade gibt es:
-```bash
-:/var/www/admidio/adm_my_files
-:/var/www/admidio/adm_plugins
-:/var/www/admidio/adm_themes
-```
+Erklärung dazu in diesem Beitrag [Docker Data Volumes](www.tricksofthetrades.net/2016/03/14/docker-data-volumes/)
 
 * *--link dockermysql:mysql* => Docker Datenbank Server [MySQL](https://hub.docker.com/r/mysql/mysql-server/) oder [PostgreSQL](https://hub.docker.com/_/postgres/) mit dem Container Admidio verbinden. *dockermysql* = Name vom Docker Container, *mysql* = Name der Datenbank.
 * *admidio:3.2.8* => Image Name mit Versions Tag.
