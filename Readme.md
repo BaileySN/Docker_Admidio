@@ -13,6 +13,31 @@ und nach diesen gesucht werden. [(c) Admidio.org 2017](https://www.admidio.org/d
 
 Kurz gesagt, es ist ein Wahnsinns Online Tool für Vereine aller größen.
 
+## Inhalt
+
+[**Warum Docker**](#warum-docker)
+
+---
+
+[**Container über Dockerhub Downloaden**](#container-%C3%BCber-dockerhub-downloaden)
+[**Container erstellen**](#container-erstellen)
+[**Container mit Docker Befehl erstellen**](#container-mit-docker-befehl-erstellen)
+[**Container starten**](#container-starten)
+
+---
+
+[**Erklärung zu dem Start Befehl**](#erkl%C3%A4rung-zu-dem-start-befehl)
+[**Container updaten**](#container-updaten)
+[**Container über Git updaten*](#container-%C3%BCber-git-updaten)
+
+---
+
+[**Admidio Wiki**](#wiki-zu-admidio)
+
+---
+
+[**MySQL Benutzer und Datenbank in der Mysql-Shell erstellen**](#mysql-benutzer-und-datenbank-in-der-mysql-shell-erstellen)
+
 ## Warum Docker
 
 Da ich selber mehrere Server mit Docker verbunden habe, wollte ich jetzt für unseren Verein nicht wieder einen extra Webserver 
@@ -82,6 +107,7 @@ Dabei kann jetzt im Admidio Setup bei der Datenbank statt die IP-Addresse der Co
 ### Erklärung zu dem Start Befehl
 
 Bei diesem Beispiel
+
 ```bash
 docker run -it --restart always --name admidio_test -p 8080:80 -v /var/admidio:/var/www/admidio/adm_my_files --link dockermysql:mysql admidio:3.2.8
 ```
@@ -92,10 +118,18 @@ Dadurch könnte man z.B.: den Container auch über Port *8081* erreichen indem m
 * *-v /var/admidio:/var/www/admidio/adm_my_files* => Uploads und config von Admidio Lokal in einen Ordner speichern.
 Der Vorteil dabei ist, das man einfacher ein Backup erstellen kann. Dabei wird zuerst der Lokale Ordnerpfad angeben, danach den 
 Pfad im Container.
+
+Folgende Pfade gibt es:
+```bash
+:/var/www/admidio/adm_my_files
+:/var/www/admidio/adm_plugins
+:/var/www/admidio/adm_themes
+```
+
 * *--link dockermysql:mysql* => Docker Datenbank Server [MySQL](https://hub.docker.com/r/mysql/mysql-server/) oder [PostgreSQL](https://hub.docker.com/_/postgres/) mit dem Container Admidio verbinden. *dockermysql* = Name vom Docker Container, *mysql* = Name der Datenbank.
 * *admidio:3.2.8* => Image Name mit Versions Tag.
 
-## Admidio Container updaten
+## Container updaten
 
 Falls man es mit dem Docker Hub Repo verwendet, kann man folgende schritte durchführen.
 
@@ -118,7 +152,7 @@ docker run -it --restart always --name admidio_test -p 8080:80 -v /var/admidio:/
 * Über einen Browser auf die Admidio Seite gehen und falls nötig die Migration durchführen.
 * Fertig!
 
-### Admidio Container über Git updaten
+### Container über Git updaten
 
 Mit *Git pull* im aktuellen Ordner, das Git Repo updaten und den Container neu Bauen.
 ```bash
