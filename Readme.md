@@ -97,7 +97,7 @@ docker rm admidio_test
 ```
 * Mit folgendem Befehl den neuen Container Provisionieren und Starten (dabei kann der alte Befehl verwendet werden).
 ```bash
-docker run -it --restart always --name admidio_test -p 8080:80 -v /var/admidio:/var/www/admidio/adm_my_files --link dockermysql:mysql admidio:latest
+docker run -it --restart always --name admidio_test -p 8080:80 -v /var/admidio:/var/www/admidio/adm_my_files --link dockermysql:mysql guenterbailey/admidio:latest
 ```
 * Über einen Browser auf die Admidio Seite gehen und falls nötig die Migration durchführen.
 * Fertig!
