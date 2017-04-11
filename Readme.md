@@ -15,29 +15,25 @@ Kurz gesagt, es ist ein Wahnsinns Online Tool für Vereine aller größen.
 
 ## Inhalt
 
-[**Warum Docker**](#warum-docker)
-
+[*Warum Docker*](#warum-docker)
 ---
-[**Container über Dockerhub Downloaden**](#container-%C3%BCber-dockerhub-downloaden)
+[*Container über Dockerhub Downloaden*](#container-%C3%BCber-dockerhub-downloaden)
 
-[**Container erstellen**](#container-erstellen)
+[*Container erstellen*](#container-erstellen)
 
-[**Container mit Docker Befehl erstellen**](#container-mit-docker-befehl-erstellen)
+[*Container mit Docker Befehl erstellen*](#container-mit-docker-befehl-erstellen)
 
-[**Container starten**](#container-starten)
-
+[*Container starten*](#container-starten)
 ---
-[**Erklärung zu dem Start Befehl**](#erkl%C3%A4rung-zu-dem-start-befehl)
+[*Erklärung zu dem Start Befehl*](#erkl%C3%A4rung-zu-dem-start-befehl)
 
-[**Container updaten**](#container-updaten)
+[*Container updaten*](#container-updaten)
 
-[**Container über Git updaten*](#container-%C3%BCber-git-updaten)
-
+[*Container über Git updaten*](#container-%C3%BCber-git-updaten)
 ---
-[**Admidio Wiki**](#wiki-zu-admidio)
-
+[*Admidio Wiki*](#wiki-zu-admidio)
 ---
-[**MySQL Benutzer und Datenbank in der Mysql-Shell erstellen**](#mysql-benutzer-und-datenbank-in-der-mysql-shell-erstellen)
+[*MySQL Benutzer und Datenbank in der Mysql-Shell erstellen*](#mysql-benutzer-und-datenbank-in-der-mysql-shell-erstellen)
 
 ## Warum Docker
 
