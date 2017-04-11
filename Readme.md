@@ -45,7 +45,7 @@ Falls man einen Speziellen Branch braucht, muss man noch den Befehl um die Branc
 sh docker_build.sh v3.2
 ```
 
-* Container mit Docker Befehl erstellen
+### Container mit Docker Befehl erstellen
 
 Der Container wird mit diesem Befehl automatisch mit dem Branch *master* erstellt.
 
