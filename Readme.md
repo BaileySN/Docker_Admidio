@@ -118,7 +118,11 @@ docker run -it --restart always --name admidio_test -p 8080:80 -v /var/admidio:/
 Dadurch könnte man z.B.: den Container auch über Port *8081* erreichen indem man es so angibt *-p 8081:80*.
 * *-v /var/admidio:/var/www/admidio/adm_my_files* => Uploads und config von Admidio Lokal in einen Ordner speichern.
 Der Vorteil dabei ist, das man einfacher ein Backup erstellen kann. Dabei wird zuerst der Lokale Ordnerpfad angeben, danach den 
-Pfad im Container.
+Pfad im Container. 
+<span style="color:red">Info:</span> es ist ein Mount Befehl, somit wird der Lokale Ordner am Host mit dem im Container drübergelegt.
+Dies bedeutet: wenn der Lokale Ordner Leer ist, ist es auch im Container so.
+Somit müsste man bei *adm_plugins*, *adm_themes* zuerst den Ordner am Lokalem Host anlegen und darin die Daten reinlegen.
+Besser ist es in diesem Beitrag erklärt [Docker Data Volumes](www.tricksofthetrades.net/2016/03/14/docker-data-volumes/)
 
 Folgende Pfade gibt es:
 ```bash
