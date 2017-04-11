@@ -15,8 +15,10 @@ ENV GITURL="https://github.com/Admidio/admidio.git"
 ENV APACHECONF="/etc/apache2/sites-available"
 ENV WWW="/var/www"
 ENV ADM="admidio"
+ENV PROV="provision"
 
 COPY admidio_apache.conf $APACHECONF/"admidio.conf"
+COPY entrypoint.sh /"entrypoint.sh"
 
 WORKDIR $WWW
 RUN a2dissite 000-default.conf && a2ensite admidio.conf
@@ -30,13 +32,16 @@ apt-get autoremove -y && \
 apt-get autoclean -y && \
 apt-get clean
 
+#create prov folder
+RUN mkdir -p $PROV && \
+cp -a $ADM/adm_my_files $ADM/adm_plugins $ADM/adm_themes $PROV/
+
 RUN sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 30M/g" /etc/php5/apache2/php.ini
 RUN sed -i "s/post_max_size = 8M/post_max_size = 40M/g" /etc/php5/apache2/php.ini
 
-VOLUME ["$WWW/$ADM/", "$APACHECONF"]
+VOLUME ["$WWW/$ADM/adm_my_files", "$WWW/$ADM/adm_themes", "$WWW/$ADM/adm_plugins" ,"$APACHECONF"]
 
 # Port to expose
 EXPOSE 80
 
-CMD ["-D", "FOREGROUND"]
-ENTRYPOINT ["apachectl"]
+ENTRYPOINT ["/entrypoint.sh"]
