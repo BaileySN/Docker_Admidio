@@ -32,18 +32,34 @@ Den Fertigen Container kann man einfach per [docker pull guenterbailey/admidio:l
 
 ## Container erstellen
 
-Um den Container selber Lokal zu erstellen, das Repositority downloaden oder Clonen.
+Um den Container selber Lokal zu erstellen, muss man das Git Repositority [Docker_Admidio](https://github.com/BaileySN/Docker_Admidio.git) downloaden oder Clonen.
 
-Danach in den Ordner gehen und entweder direkt mit 
-```bash
-docker build -t admidio_test .
-```
-oder mit dem Skript den Container erstellen.
+Danach in den Ordner wechseln und mit dem *docker_build.sh* Skript den Container erstellen.
 ```bash
 sh docker_build.sh
 ```
+Dabei wird der Container jetzt mit dem Branch *master* erstellt.
 
-Im Kompillierungsprozess werden die Dateien *admidio_apache.conf* und *admidio-3.2.8.zip* automatisch in den Kontainer kopiert und eingerichtet.
+Falls man einen Speziellen Branch braucht, muss man noch den Befehl um die Branch bezeichnung erweitern.
+```bash
+sh docker_build.sh v3.2
+```
+
+* Container mit Docker Befehl erstellen
+
+Der Container wird mit diesem Befehl automatisch mit dem Branch *master* erstellt.
+
+```bash
+docker build -t admidio_test .
+```
+
+Für einen Speziellen Branch, gibt man noch *--build-arg branch=<Branch-Bezeichnung>* an.
+
+```bash
+docker build -t admidio_test --build-arg branch=v3.2 .
+```
+
+Im Kompillierungsprozess wird die Datei *admidio_apache.conf* automatisch in den Container kopiert und eingerichtet.
 
 ### Container starten
 
