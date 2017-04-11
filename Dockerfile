@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:stretch
 MAINTAINER Guenter Bailey
 
 # since docker v1.9, we can use --build-arg variable
@@ -8,7 +8,7 @@ ENV ADM_BRANCH=${branch:-master}
 
 # install required packages
 RUN apt-get update
-RUN apt-get install -y apache2 libapache2-mod-php5 php5 php5-common php5-mcrypt php5-mysql php5-cli php5-gd zip unzip gzip php5-pgsql git
+RUN apt-get install -y apache2 libapache2-mod-php php php-common php-mcrypt php-mysql php-cli php-gd zip unzip gzip php-pgsql git
 
 # set enviroments
 ENV GITURL="https://github.com/Admidio/admidio.git"
@@ -36,8 +36,8 @@ apt-get clean
 RUN mkdir -p $PROV && \
 cp -a $ADM/adm_my_files $ADM/adm_plugins $ADM/adm_themes $PROV/
 
-RUN sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 30M/g" /etc/php5/apache2/php.ini
-RUN sed -i "s/post_max_size = 8M/post_max_size = 40M/g" /etc/php5/apache2/php.ini
+RUN sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 30M/g" /etc/php/7.0/apache2/php.ini
+RUN sed -i "s/post_max_size = 8M/post_max_size = 40M/g" /etc/php/7.0/apache2/php.ini
 
 VOLUME ["$WWW/$ADM/adm_my_files", "$WWW/$ADM/adm_themes", "$WWW/$ADM/adm_plugins" ,"$APACHECONF"]
 
