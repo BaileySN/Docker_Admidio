@@ -120,10 +120,11 @@ Dadurch könnte man z.B.: den Container auch über Port *8081* erreichen indem m
 Der Vorteil dabei ist, das man einfacher ein Backup erstellen kann. Dabei wird zuerst der Lokale Ordnerpfad angeben, danach den 
 Pfad im Container. 
 
-**Info:** es ist ein Mount Befehl, somit wird der Lokale Ordner am Host mit dem im Container drübergelegt.
+**Info:** ~~es ist ein Mount Befehl, somit wird der Lokale Ordner am Host mit dem im Container drübergelegt.
 Dies bedeutet: wenn der Lokale Ordner Leer ist, ist es auch im Container so.
-Somit müsste man bei *adm_plugins*, *adm_themes* zuerst den Ordner am Lokalem Host anlegen und darin die Daten reinlegen.
-Erklärung dazu in diesem Beitrag [Docker Data Volumes](www.tricksofthetrades.net/2016/03/14/docker-data-volumes/)
+Somit müsste man bei *adm_plugins*, *adm_themes* zuerst den Ordner am Lokalem Host anlegen und darin die Daten reinlegen.~~
+Prüft ab jetzt automatisch und kopiert gegebenfalls vom Provisions Ordner.
+Erklärung zu Docker Volume in diesem Beitrag [Docker Data Volumes](www.tricksofthetrades.net/2016/03/14/docker-data-volumes/)
 
 * *--link dockermysql:mysql* => Docker Datenbank Server [MySQL](https://hub.docker.com/r/mysql/mysql-server/) oder [PostgreSQL](https://hub.docker.com/_/postgres/) mit dem Container Admidio verbinden. *dockermysql* = Name vom Docker Container, *mysql* = Name der Datenbank.
 * *admidio:3.2.8* => Image Name mit Versions Tag.
