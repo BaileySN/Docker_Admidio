@@ -25,7 +25,10 @@ RUN a2dissite 000-default.conf && a2ensite admidio.conf
 RUN echo "Clone Admidio from GiT with Branch $ADM_BRANCH" && \
 git clone --depth 1 --single-branch --branch $ADM_BRANCH https://github.com/Admidio/admidio.git $ADM && \
 chown -R www-data:www-data $ADM && \
-chmod -R 777 $ADM/adm_my_files
+chmod -R 777 $ADM/adm_my_files && \
+apt-get autoremove -y && \
+apt-get autoclean -y && \
+apt-get clean
 
 RUN sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 30M/g" /etc/php5/apache2/php.ini
 RUN sed -i "s/post_max_size = 8M/post_max_size = 40M/g" /etc/php5/apache2/php.ini
