@@ -53,7 +53,7 @@ Der Container wird mit diesem Befehl automatisch mit dem Branch *master* erstell
 docker build -t admidio_test .
 ```
 
-Für einen Speziellen Branch, gibt man noch *--build-arg branch=<Branch-Bezeichnung>* an.
+Für einen Speziellen Branch, gibt man noch *--build-arg branch=Branch-Bezeichnung* an.
 
 ```bash
 docker build -t admidio_test --build-arg branch=v3.2 .
