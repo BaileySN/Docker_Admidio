@@ -8,7 +8,7 @@ ENV ADM_BRANCH=${branch:-master}
 
 # install required packages
 RUN apt-get update
-RUN apt-get install -y apache2 libapache2-mod-php php php-common php-mcrypt php-mysql php-cli php-gd zip unzip gzip php-pgsql git
+RUN apt-get install -y apache2 libapache2-mod-php php php-common php-mcrypt php-mysql php-cli php-gd zip unzip gzip php-pgsql git php7.0-xml php7.0-zip
 
 # set enviroments
 ENV GITURL="https://github.com/Admidio/admidio.git"
