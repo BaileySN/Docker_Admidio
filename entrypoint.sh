@@ -45,4 +45,13 @@ do
 	fi
 done
 
+# patch
+# AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using <docker_ip> Set the 'ServerName' directive globally to suppress this message
+APACHE_CONF="/etc/apache2/conf-available"
+APACHE_CONF_ENABLE="/etc/apache2/conf-enabled"
+if [ ! -f "$APACHE_CONF/fqdn.conf" ]
+then
+	echo "ServerName   `hostname`" > "$APACHE_CONF/fqdn.conf" && ln -s "$APACHE_CONF/fqdn.conf" "$APACHE_CONF_ENABLE/fqdn.conf"
+fi
+
 exec apache2 -DFOREGROUND "$@"
