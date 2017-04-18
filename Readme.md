@@ -92,7 +92,7 @@ Im Kompillierungsprozess wird die Datei *admidio_apache.conf* automatisch in den
 Nach dem Erstellungsprozess kann man den Container mit folgendem Befehl starten (Provisionieren).
 
 ```bash
-docker run -it --restart always --name admidio_test -p 8080:80 -v /var/adm_my_files:/var/www/admidio/adm_my_files -v /var/admidio_themes:/var/www/admidio/adm_themes -v /var/admidio_plugins:/var/www/admidio/adm_plugins admidio:v3.2.8
+docker run -d -it --restart always --name admidio_test -p 8080:80 -v /var/adm_my_files:/var/www/admidio/adm_my_files -v /var/admidio_themes:/var/www/admidio/adm_themes -v /var/admidio_plugins:/var/www/admidio/adm_plugins admidio:v3.2.8
 ```
 
 Danach über den Browser die Seite *http://localhost:8080/* aufrufen und das Admidio Setup durchgehen.
@@ -100,7 +100,7 @@ Danach über den Browser die Seite *http://localhost:8080/* aufrufen und das Adm
 Falls man einen Docker basierte Datenbank hat, kann man die Datenbank mit dem Container verlinken und braucht nicht die IP-Addresse eingeben.
 
 ```bash
-docker run -it --restart always --name admidio_test -p 8080:80 --link dockermysql:mysql -v /var/adm_my_files:/var/www/admidio/adm_my_files -v /var/admidio_themes:/var/www/admidio/adm_themes -v /var/admidio_plugins:/var/www/admidio/adm_plugins admidio:v3.2.8
+docker run -d -it --restart always --name admidio_test -p 8080:80 --link dockermysql:mysql -v /var/adm_my_files:/var/www/admidio/adm_my_files -v /var/admidio_themes:/var/www/admidio/adm_themes -v /var/admidio_plugins:/var/www/admidio/adm_plugins admidio:v3.2.8
 ```
 Jetzt haben wir den Befehl *--link dockermysql:mysql* zum start hinzugegeben.
 
@@ -111,7 +111,7 @@ Dabei kann jetzt im Admidio Setup bei der Datenbank statt die IP-Addresse der Co
 Bei diesem Beispiel
 
 ```bash
-docker run -it --restart always --name admidio_test -p 8080:80 --link dockermysql:mysql -v /var/adm_my_files:/var/www/admidio/adm_my_files -v /var/admidio_themes:/var/www/admidio/adm_themes -v /var/admidio_plugins:/var/www/admidio/adm_plugins admidio:v3.2.8
+docker run -d -it --restart always --name admidio_test -p 8080:80 --link dockermysql:mysql -v /var/adm_my_files:/var/www/admidio/adm_my_files -v /var/admidio_themes:/var/www/admidio/adm_themes -v /var/admidio_plugins:/var/www/admidio/adm_plugins admidio:v3.2.8
 ```
 * *--restart always* => auch nach einem Server Neustart den Container starten
 * *--name* => gib dem Container einen Namen (sonst wird einer Automatisch generiert)
@@ -152,7 +152,7 @@ docker rm admidio_test
 ```
 * Mit folgendem Befehl den neuen Container Provisionieren und Starten (dabei kann der alte Befehl verwendet werden).
 ```bash
-docker run -it --restart always --name admidio_test -p 8080:80 --link dockermysql:mysql -v /var/adm_my_files:/var/www/admidio/adm_my_files -v /var/admidio_themes:/var/www/admidio/adm_themes -v /var/admidio_plugins:/var/www/admidio/adm_plugins guenterbailey/admidio:latest
+docker run -d -it --restart always --name admidio_test -p 8080:80 --link dockermysql:mysql -v /var/adm_my_files:/var/www/admidio/adm_my_files -v /var/admidio_themes:/var/www/admidio/adm_themes -v /var/admidio_plugins:/var/www/admidio/adm_plugins guenterbailey/admidio:latest
 ```
 * Über einen Browser auf die Admidio Seite gehen und wie im [Admidio Wiki die Migration](https://www.admidio.org/dokuwiki/doku.php?id=de:2.0:update) durchführen
 
